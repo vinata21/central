@@ -70,8 +70,6 @@ tsatsenko@tsatsenko-nat:~/git/first$ git status
 
 #5. Создаем файл task1.1_answer и размещаем в нем выполненые ранее действия:
 tsatsenko@tsatsenko-nat:~/git/first$ touch task1.1_answer
-
-
 tsatsenko@tsatsenko-nat:~/git/second$ git commit
 [master ef508c7] Второй комит. Созданы файлы fileA и fileB с произвольным текстом
  2 files changed, 2 insertions(+)
@@ -175,3 +173,34 @@ index 0000000..8b41b2c
 # Удаляем файл fileB:
 tsatsenko@tsatsenko-nat:~/git/first$ git rm fileB
 rm 'fileB'
+
+#Отправляем правки в центальный репозиторий согласно заданию 8:
+tsatsenko@tsatsenko-nat:~/git/first$ git status
+На ветке master
+Изменения, которые будут включены в коммит:
+  (используйте «git reset HEAD <файл>…», чтобы убрать из индекса)
+
+	изменено:      fileA
+	удалено:       fileB
+	изменено:      task1.1_answer
+
+tsatsenko@tsatsenko-nat:~/git/first$ git commit
+[master 05d25f7] Третий комит. В файл fileA была добавлена строка, fileB был удален из первого репозитория, в task1.1_answer присутствуют правки 1-5,7-8 практики
+ 3 files changed, 106 insertions(+), 1 deletion(-)
+ delete mode 100644 fileB
+
+tsatsenko@tsatsenko-nat:~/git/first$ git commit
+[master 05d25f7] Третий комит. В файл fileA была добавлена строка, fileB был удален из первого репозитория, в task1.1_answer присутствуют правки 1-5,7-8 практики
+ 3 files changed, 106 insertions(+), 1 deletion(-)
+ delete mode 100644 fileB
+tsatsenko@tsatsenko-nat:~/git/first$ git push central master
+Username for 'https://github.com': vinata21
+Password for 'https://vinata21@github.com': 
+Подсчет объектов: 8, готово.
+Delta compression using up to 4 threads.
+Сжатие объектов: 100% (5/5), готово.
+Запись объектов: 100% (8/8), 3.69 KiB | 0 bytes/s, готово.
+Total 8 (delta 0), reused 0 (delta 0)
+To https://github.com/vinata21/central.git
+   eea72f8..05d25f7  master -> master
+
