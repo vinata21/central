@@ -1,0 +1,72 @@
+#1.Создание локального репозитория выполняется с помощью команды: git init
+tsatsenko@tsatsenko-nat:~/git/first$ git init
+Инициализирован пустой репозиторий Git в /home/tsatsenko/git/first/.git/
+tsatsenko@tsatsenko-nat:~/git/first$ ls -a
+.  ..  .git
+
+
+#2.С помощью следующих команд указали имя и email:
+tsatsenko@tsatsenko-nat:~/git/first$ git config --global user.name "Наталья Цаценко"
+tsatsenko@tsatsenko-nat:~/git/first$ git config --global user.email n.tsatsenko@reg.ru
+
+
+#Проверяем корректность внесенных изменений
+tsatsenko@tsatsenko-nat:~/git/first$ git config --list
+core.autocrlf=input
+core.safecrlf=true
+user.email=n.tsatsenko@reg.ru
+user.name=Наталья Цаценко
+push.default=matching
+merge.tool=extMerge
+mergetool.extMerge.cmd=extMerge "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
+mergetool.trustexitcode=false
+diff.external=extDiff
+core.repositoryformatversion=0
+core.filemode=true
+core.bare=false
+core.logallrefupdates=true
+
+
+#3. Репозиторий на github:
+#https://github.com/vinata21/central
+
+
+#4 Создаем файл с именем task1.1 и вносим в него текст задания:
+tsatsenko@tsatsenko-nat:~/git/first$ touch task1.1
+tsatsenko@tsatsenko-nat:~/git/first$ vim task1.1
+tsatsenko@tsatsenko-nat:~/git/first$ cat task1.1
+Создай в каталоге с репозиторием файл task1.1, скопируй в него текст этого задания. Посмотри статус репозитория. Сделай так, чтобы это файл никогда не попал в репозиторий и не обрабатывался никакими командами git. Просмотри ещё раз статус репозитория.
+
+
+#Проверка статуса репозитория:
+tsatsenko@tsatsenko-nat:~/git/first$ git status
+На ветке master
+
+Начальный коммит
+
+Неотслеживаемые файлы:
+  (используйте «git add <файл>…», чтобы добавить в то, что будет включено в коммит)
+
+	task1.1
+
+ничего не добавлено в коммит, но есть неотслеживаемые файлы (используйте «git add», чтобы отслеживать их)
+
+# Настраиваем игнор-листа проекта:
+tsatsenko@tsatsenko-nat:~/git/first$ touch .gitignore
+tsatsenko@tsatsenko-nat:~/git/first$ vim .gitignore
+tsatsenko@tsatsenko-nat:~/git/first$ cat .gitignore
+#Прописываем файлы, которые не будут обрабатыватся git'ом
+task1.1
+.gitignore
+
+
+#Проверка статуса репозитория, после настройки игнор-листа:
+tsatsenko@tsatsenko-nat:~/git/first$ git status
+На ветке master
+
+Начальный коммит
+
+нечего коммитить (создайте/скопируйте файлы, затем запустите «git add», чтобы отслеживать их)
+
+#5. Создаем файл task1.1_answer и размещаем в нем выполненые ранее действия:
+tsatsenko@tsatsenko-nat:~/git/first$ touch task1.1_answer
