@@ -189,10 +189,6 @@ tsatsenko@tsatsenko-nat:~/git/first$ git commit
  3 files changed, 106 insertions(+), 1 deletion(-)
  delete mode 100644 fileB
 
-tsatsenko@tsatsenko-nat:~/git/first$ git commit
-[master 05d25f7] Третий комит. В файл fileA была добавлена строка, fileB был удален из первого репозитория, в task1.1_answer присутствуют правки 1-5,7-8 практики
- 3 files changed, 106 insertions(+), 1 deletion(-)
- delete mode 100644 fileB
 tsatsenko@tsatsenko-nat:~/git/first$ git push central master
 Username for 'https://github.com': vinata21
 Password for 'https://vinata21@github.com': 
@@ -203,4 +199,334 @@ Delta compression using up to 4 threads.
 Total 8 (delta 0), reused 0 (delta 0)
 To https://github.com/vinata21/central.git
    eea72f8..05d25f7  master -> master
+
+
+#9. Внесение оставшихся изменений согласно заданию 9:
+tsatsenko@tsatsenko-nat:~/git/second$ git add task1.1_answer
+tsatsenko@tsatsenko-nat:~/git/second$ git status
+На ветке master
+Ваша ветка обновлена в соответствии с «origin/master».
+Изменения, которые будут включены в коммит:
+  (используйте «git reset HEAD <файл>…», чтобы убрать из индекса)
+
+	изменено:      task1.1_answer
+
+tsatsenko@tsatsenko-nat:~/git/second$ git commit
+[master 42572c5] Четвертый комит. Внесение оставшихся правок в файл task1.1_answer вторго репозитория
+ 1 file changed, 33 insertions(+)
+
+
+# Просмот лога первого репозитория:
+tsatsenko@tsatsenko-nat:~/git/first$ git log
+commit 05d25f71a06f80abd4327403c6d4bf051a3416f1
+Author: Наталья Цаценко <n.tsatsenko@reg.ru>
+Date:   Sun Sep 10 16:44:42 2017 +0400
+
+    Третий комит. В файл fileA была добавлена строка, fileB был удален из первого репозитория, в task1.1_answer присутствуют правки 1-5,7-8 практики
+
+commit ef508c769bf18bc32c09a690d086211693bb7bd5
+Author: Наталья Цаценко <n.tsatsenko@reg.ru>
+Date:   Sun Sep 10 16:24:29 2017 +0400
+
+    Второй комит. Созданы файлы fileA и fileB с произвольным текстом
+
+commit eea72f80022b6be9b8c7b3fbcff8235db3d7e4c8
+Merge: 228c5ff 479a813
+Author: Наталья Цаценко <n.tsatsenko@reg.ru>
+Date:   Sun Sep 10 15:51:39 2017 +0400
+
+    Merge branch 'master' of https://github.com/vinata21/central
+
+commit 228c5ffc4436598a01f12fe92e39a138c58b37f2
+Author: Наталья Цаценко <n.tsatsenko@reg.ru>
+Date:   Sun Sep 10 15:40:52 2017 +0400
+
+    Первый коммит. Команды с 1 по 5 задание практики по git
+
+commit 479a8131a88e2a6ef2695bfc76c2f51a43aa2e38
+Author: vinata21 <tasia-2008@mail.ru>
+Date:   Sun Sep 10 15:20:27 2017 +0400
+
+    Initial commit
+
+
+# Просмот лога второго репозитория:
+tsatsenko@tsatsenko-nat:~/git/second$ git log
+commit 42572c5dab8197f0ade78a538352add1cca3d177
+Author: Наталья Цаценко <n.tsatsenko@reg.ru>
+Date:   Sun Sep 10 16:55:49 2017 +0400
+
+    Четвертый комит. Внесение оставшихся правок в файл task1.1_answer вторго репозитория
+
+commit ef508c769bf18bc32c09a690d086211693bb7bd5
+Author: Наталья Цаценко <n.tsatsenko@reg.ru>
+Date:   Sun Sep 10 16:24:29 2017 +0400
+
+    Второй комит. Созданы файлы fileA и fileB с произвольным текстом
+
+commit eea72f80022b6be9b8c7b3fbcff8235db3d7e4c8
+Merge: 228c5ff 479a813
+Author: Наталья Цаценко <n.tsatsenko@reg.ru>
+Date:   Sun Sep 10 15:51:39 2017 +0400
+
+    Merge branch 'master' of https://github.com/vinata21/central
+
+commit 228c5ffc4436598a01f12fe92e39a138c58b37f2
+Author: Наталья Цаценко <n.tsatsenko@reg.ru>
+Date:   Sun Sep 10 15:40:52 2017 +0400
+
+    Первый коммит. Команды с 1 по 5 задание практики по git
+
+commit 479a8131a88e2a6ef2695bfc76c2f51a43aa2e38
+Author: vinata21 <tasia-2008@mail.ru>
+Date:   Sun Sep 10 15:20:27 2017 +0400
+
+    Initial commit
+
+
+
+# Мержим ветки second и first
+tsatsenko@tsatsenko-nat:~/git/second$ git fetch origin 
+remote: Подсчет объектов: 4, готово.
+remote: Сжатие объектов: 100% (3/3), готово.
+remote: Total 4 (delta 0), reused 0 (delta 0)
+Распаковка объектов: 100% (4/4), готово.
+Из /home/tsatsenko/git/first
+   ef508c7..05d25f7  master     -> origin/master
+tsatsenko@tsatsenko-nat:~/git/second$ git merge origin/master 
+Автослияние task1.1_answer
+КОНФЛИКТ (содержимое): Конфликт слияния в task1.1_answer
+Удаление fileB
+Не удалось провести автоматическое слияние; исправьте конфликты и сделайте коммит результата.
+
+
+# Вручную устранила ошибки в слиянии и завершила мерж:
+tsatsenko@tsatsenko-nat:~/git/second$ gedit task1.1_answer
+tsatsenko@tsatsenko-nat:~/git/second$ git status
+На ветке master
+Ваша ветка и «origin/master» разошлись
+и теперь имеют 1 и 1 разный коммит в каждой соответственно.
+  (используйте «git pull», чтобы слить внешнюю ветку в вашу)
+У вас есть не слитые пути.
+  (разрешите конфликты, затем запустите «git commit»)
+
+Изменения, которые будут включены в коммит:
+
+	изменено:      fileA
+	удалено:       fileB
+
+Не слитые пути:
+  (используйте «git add <файл>…», чтобы пометить разрешение конфликта)
+
+	оба измены:     task1.1_answer
+
+tsatsenko@tsatsenko-nat:~/git/second$ git add task1.1_answer
+tsatsenko@tsatsenko-nat:~/git/second$ git status
+На ветке master
+Ваша ветка и «origin/master» разошлись
+и теперь имеют 1 и 1 разный коммит в каждой соответственно.
+  (используйте «git pull», чтобы слить внешнюю ветку в вашу)
+Все конфликты исправлены, но вы все еще в процессе слияния.
+  (используйте «git commit», чтобы завершить слияние)
+
+Изменения, которые будут включены в коммит:
+
+	изменено:      fileA
+	удалено:       fileB
+	изменено:      task1.1_answer
+
+tsatsenko@tsatsenko-nat:~/git/second$ git commit
+[master c6c4349] Merge remote-tracking branch 'origin/master'
+
+tsatsenko@tsatsenko-nat:~/git/second$ git status
+На ветке master
+Ваша ветка опережает «origin/master» на 2 коммита.
+  (используйте «git push», чтобы опубликовать ваши локальные коммиты)
+нечего коммитить, нет изменений в рабочем каталоге
+
+# 10. Восстанавливаем файл fileB:
+tsatsenko@tsatsenko-nat:~/git/first$ git checkout ef508c769bf18bc32c09a690d086211693bb7bd5 fileB
+tsatsenko@tsatsenko-nat:~/git/first$ ls
+fileA  fileB  README.md  task1.1  task1.1_answer
+tsatsenko@tsatsenko-nat:~/git/first$ cat fileB
+test 2 for fileB
+
+# Отправляем его в центральный репозиторий:
+tsatsenko@tsatsenko-nat:~/git/first$ git commit 
+[master 9b0157a] Пятый комит восстановленный файл fileB отпрвляем в центальный репозиторий
+ 1 file changed, 1 insertion(+)
+ create mode 100644 fileB
+
+tsatsenko@tsatsenko-nat:~/git/first$ git commit 
+[master 9b0157a] Пятый комит восстановленный файл fileB отпрвляем в центальный репозиторий
+ 1 file changed, 1 insertion(+)
+ create mode 100644 fileB
+tsatsenko@tsatsenko-nat:~/git/first$ git push central master
+Username for 'https://github.com': vinata21
+Password for 'https://vinata21@github.com': 
+Подсчет объектов: 3, готово.
+Delta compression using up to 4 threads.
+Сжатие объектов: 100% (2/2), готово.
+Запись объектов: 100% (3/3), 462 bytes | 0 bytes/s, готово.
+Total 3 (delta 0), reused 0 (delta 0)
+To https://github.com/vinata21/central.git
+   05d25f7..9b0157a  master -> master
+
+
+#11. Приводим репозитории первый и второй к одинакорому состоянию 
+
+tsatsenko@tsatsenko-nat:~/git/first$ git pull second master
+Из /home/tsatsenko/git/second
+ * branch            master     -> FETCH_HEAD
+Merge made by the 'recursive' strategy.
+ task1.1_answer | 33 +++++++++++++++++++++++++++++++--
+ 1 file changed, 31 insertions(+), 2 deletions(-)
+
+tsatsenko@tsatsenko-nat:~/git/second$ git checkout --detach
+Note: checking out 'HEAD'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by performing another checkout.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -b with the checkout command again. Example:
+
+  git checkout -b <new-branch-name>
+
+HEAD сейчас на c6c4349... Merge remote-tracking branch 'origin/master'
+
+tsatsenko@tsatsenko-nat:~/git/first$ git push second master
+Подсчет объектов: 5, готово.
+Delta compression using up to 4 threads.
+Сжатие объектов: 100% (4/4), готово.
+Запись объектов: 100% (5/5), 743 bytes | 0 bytes/s, готово.
+Total 5 (delta 1), reused 0 (delta 0)
+To /home/tsatsenko/git/second
+   c6c4349..32c9d59  master -> master
+
+
+Логи первого репозитория:
+commit 32c9d592c2c53f31b9096c679cf7bbd88d0f0ea4
+Merge: 9b0157a c6c4349
+Author: Наталья Цаценко <n.tsatsenko@reg.ru>
+Date:   Sun Sep 10 17:42:11 2017 +0400
+
+    Merge branch 'master' of /home/tsatsenko/git/second
+
+commit 9b0157a45740b7818314ba0de3bfc94b1c65486a
+Author: Наталья Цаценко <n.tsatsenko@reg.ru>
+Date:   Sun Sep 10 17:35:23 2017 +0400
+
+    Пятый комит восстановленный файл fileB отпрвляем в центальный репозиторий
+
+commit c6c43496ed6d5f147204d78386ef5b13955f4865
+Merge: 42572c5 05d25f7
+Author: Наталья Цаценко <n.tsatsenko@reg.ru>
+Date:   Sun Sep 10 17:16:29 2017 +0400
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 42572c5dab8197f0ade78a538352add1cca3d177
+Author: Наталья Цаценко <n.tsatsenko@reg.ru>
+Date:   Sun Sep 10 16:55:49 2017 +0400
+
+    Четвертый комит. Внесение оставшихся правок в файл task1.1_answer вторго репозитория
+
+commit 05d25f71a06f80abd4327403c6d4bf051a3416f1
+Author: Наталья Цаценко <n.tsatsenko@reg.ru>
+Date:   Sun Sep 10 16:44:42 2017 +0400
+
+    Третий комит. В файл fileA была добавлена строка, fileB был удален из первого репозитория, в task1.1_answer присутствуют правки 1-5,7-8 практики
+
+commit ef508c769bf18bc32c09a690d086211693bb7bd5
+Author: Наталья Цаценко <n.tsatsenko@reg.ru>
+Date:   Sun Sep 10 16:24:29 2017 +0400
+
+    Второй комит. Созданы файлы fileA и fileB с произвольным текстом
+
+commit eea72f80022b6be9b8c7b3fbcff8235db3d7e4c8
+Merge: 228c5ff 479a813
+Author: Наталья Цаценко <n.tsatsenko@reg.ru>
+Date:   Sun Sep 10 15:51:39 2017 +0400
+
+    Merge branch 'master' of https://github.com/vinata21/central
+
+commit 228c5ffc4436598a01f12fe92e39a138c58b37f2
+Author: Наталья Цаценко <n.tsatsenko@reg.ru>
+Date:   Sun Sep 10 15:40:52 2017 +0400
+
+    Первый коммит. Команды с 1 по 5 задание практики по git
+
+commit 479a8131a88e2a6ef2695bfc76c2f51a43aa2e38
+Author: vinata21 <tasia-2008@mail.ru>
+Date:   Sun Sep 10 15:20:27 2017 +0400
+
+    Initial commit
+
+
+#Логи вторго репозитория:
+commit 32c9d592c2c53f31b9096c679cf7bbd88d0f0ea4
+Merge: 9b0157a c6c4349
+Author: Наталья Цаценко <n.tsatsenko@reg.ru>
+Date:   Sun Sep 10 17:42:11 2017 +0400
+
+    Merge branch 'master' of /home/tsatsenko/git/second
+
+commit 9b0157a45740b7818314ba0de3bfc94b1c65486a
+Author: Наталья Цаценко <n.tsatsenko@reg.ru>
+Date:   Sun Sep 10 17:35:23 2017 +0400
+
+    Пятый комит восстановленный файл fileB отпрвляем в центальный репозиторий
+
+commit c6c43496ed6d5f147204d78386ef5b13955f4865
+Merge: 42572c5 05d25f7
+Author: Наталья Цаценко <n.tsatsenko@reg.ru>
+Date:   Sun Sep 10 17:16:29 2017 +0400
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 42572c5dab8197f0ade78a538352add1cca3d177
+Author: Наталья Цаценко <n.tsatsenko@reg.ru>
+Date:   Sun Sep 10 16:55:49 2017 +0400
+
+    Четвертый комит. Внесение оставшихся правок в файл task1.1_answer вторго репозитория
+
+commit 05d25f71a06f80abd4327403c6d4bf051a3416f1
+Author: Наталья Цаценко <n.tsatsenko@reg.ru>
+Date:   Sun Sep 10 16:44:42 2017 +0400
+
+    Третий комит. В файл fileA была добавлена строка, fileB был удален из первого репозитория, в task1.1_answer присутствуют правки 1-5,7-8 практики
+
+commit ef508c769bf18bc32c09a690d086211693bb7bd5
+Author: Наталья Цаценко <n.tsatsenko@reg.ru>
+Date:   Sun Sep 10 16:24:29 2017 +0400
+
+    Второй комит. Созданы файлы fileA и fileB с произвольным текстом
+
+commit eea72f80022b6be9b8c7b3fbcff8235db3d7e4c8
+Merge: 228c5ff 479a813
+Author: Наталья Цаценко <n.tsatsenko@reg.ru>
+Date:   Sun Sep 10 15:51:39 2017 +0400
+
+    Merge branch 'master' of https://github.com/vinata21/central
+
+commit 228c5ffc4436598a01f12fe92e39a138c58b37f2
+Author: Наталья Цаценко <n.tsatsenko@reg.ru>
+Date:   Sun Sep 10 15:40:52 2017 +0400
+
+    Первый коммит. Команды с 1 по 5 задание практики по git
+
+commit 479a8131a88e2a6ef2695bfc76c2f51a43aa2e38
+Author: vinata21 <tasia-2008@mail.ru>
+Date:   Sun Sep 10 15:20:27 2017 +0400
+
+    Initial commit
+
+
+# Создаем вертку feature1:
+tsatsenko@tsatsenko-nat:~/git/first$ git branch feature1
+tsatsenko@tsatsenko-nat:~/git/first$ git branch 
+  feature1
+* master
 
