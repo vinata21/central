@@ -70,8 +70,109 @@ tsatsenko@tsatsenko-nat:~/git/first$ git status
 
 #5. Создаем файл task1.1_answer и размещаем в нем выполненые ранее действия:
 tsatsenko@tsatsenko-nat:~/git/first$ touch task1.1_answer
+tsatsenko@tsatsenko-nat:~/git/second$ git commit
+[master ef508c7] Второй комит. Созданы файлы fileA и fileB с произвольным текстом
+ 2 files changed, 2 insertions(+)
+ create mode 100644 fileA
+ create mode 100644 fileB
+
+# При попытке отправить данные в первый репозиторий возникали проблемы :
+tsatsenko@tsatsenko-nat:~/git/second$ git push origin master
+Подсчет объектов: 4, готово.
+Delta compression using up to 4 threads.
+Сжатие объектов: 100% (2/2), готово.
+Запись объектов: 100% (4/4), 484 bytes | 0 bytes/s, готово.
+Total 4 (delta 0), reused 0 (delta 0)
+remote: error: refusing to update checked out branch: refs/heads/master
+remote: error: By default, updating the current branch in a non-bare repository
+remote: error: is denied, because it will make the index and work tree inconsistent
+remote: error: with what you pushed, and will require 'git reset --hard' to match
+remote: error: the work tree to HEAD.
+remote: error: 
+remote: error: You can set 'receive.denyCurrentBranch' configuration variable to
+remote: error: 'ignore' or 'warn' in the remote repository to allow pushing into
+remote: error: its current branch; however, this is not recommended unless you
+remote: error: arranged to update its work tree to match what you pushed in some
+remote: error: other way.
+remote: error: 
+remote: error: To squelch this message and still keep the default behaviour, set
+remote: error: 'receive.denyCurrentBranch' configuration variable to 'refuse'.
+To /home/tsatsenko/git/first
+ ! [remote rejected] master -> master (branch is currently checked out)
+error: не удалось отправить некоторые ссылки в «/home/tsatsenko/git/first»
 
 
+# Данная ошибка возникает из-за того ,что Git по умолчанию не разрешает обновлять текущую ветку не bare-хранилища посредством push
+
+tsatsenko@tsatsenko-nat:~/git/second$ cd ..
+tsatsenko@tsatsenko-nat:~/git$ cd first
+tsatsenko@tsatsenko-nat:~/git/first$ git checkout --detach
+Note: checking out 'HEAD'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by performing another checkout.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -b with the checkout command again. Example:
+
+  git checkout -b <new-branch-name>
+
+HEAD сейчас на eea72f8... Merge branch 'master' of https://github.com/vinata21/central
+tsatsenko@tsatsenko-nat:~/git/first$ cd ..
+tsatsenko@tsatsenko-nat:~/git$ cd second/
+tsatsenko@tsatsenko-nat:~/git/second$ git push origin master
+Подсчет объектов: 4, готово.
+Delta compression using up to 4 threads.
+Сжатие объектов: 100% (2/2), готово.
+Запись объектов: 100% (4/4), 484 bytes | 0 bytes/s, готово.
+Total 4 (delta 0), reused 0 (delta 0)
+To /home/tsatsenko/git/first
+   eea72f8..ef508c7  master -> master
+tsatsenko@tsatsenko-nat:~/git/second$ cd ..
+tsatsenko@tsatsenko-nat:~/git$ cd first/
+tsatsenko@tsatsenko-nat:~/git/first$ git status
+HEAD отделен на eea72f8
+нечего коммитить, нет изменений в рабочем каталоге
+tsatsenko@tsatsenko-nat:~/git/first$ git checkout master
+Предыдущая позиция HEAD была eea72f8... Merge branch 'master' of https://github.com/vinata21/central
+Переключено на ветку «master»
+tsatsenko@tsatsenko-nat:~/git/first$ git status
+На ветке master
+нечего коммитить, нет изменений в рабочем каталоге
+tsatsenko@tsatsenko-nat:~/git/first$ ls -a 
+.  ..  fileA  fileB  .git  .gitignore  README.md  task1.1  task1.1_answer
+tsatsenko@tsatsenko-nat:~/git/first$ cd ..
+tsatsenko@tsatsenko-nat:~/git$ cd second
+tsatsenko@tsatsenko-nat:~/git/second$ ls -a
+.  ..  fileA  fileB  .git  .gitignore  README.md  task1.1_answer
+
+
+#8. Добавляем в файл fileA еще одну строку:
+tsatsenko@tsatsenko-nat:~/git/first$ vim fileA
+tsatsenko@tsatsenko-nat:~/git/first$ cat fileA
+test 1 for fileA
+new line for question 9
+
+tsatsenko@tsatsenko-nat:~/git/first$ git log -p fileA
+commit ef508c769bf18bc32c09a690d086211693bb7bd5
+Author: Наталья Цаценко <n.tsatsenko@reg.ru>
+Date:   Sun Sep 10 16:24:29 2017 +0400
+
+    Второй комит. Созданы файлы fileA и fileB с произвольным текстом
+
+diff --git a/fileA b/fileA
+new file mode 100644
+index 0000000..8b41b2c
+--- /dev/null
++++ b/fileA
+@@ -0,0 +1 @@
++test 1 for fileA
+
+
+# Удаляем файл fileB:
+tsatsenko@tsatsenko-nat:~/git/first$ git rm fileB
+rm 'fileB'
 
 #Отправляем правки в центальный репозиторий согласно заданию 8:
 tsatsenko@tsatsenko-nat:~/git/first$ git status
